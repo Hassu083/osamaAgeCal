@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <center>
+      <h1>Age Calculator</h1>
+      <div><label>Enter Date</label><input id="date" type="number" /></div>
+      <div>
+        <label style="margin-left: -56px">Select Month</label>
+        <select name="" id="month">
+          <option value="January">January</option>
+          <option value="Febuaray">Febuaray</option>
+          <option value="March">March</option>
+          <option value="April">April</option>
+          <option value="May">May</option>
+          <option value="June">June</option>
+          <option value="July">July</option>
+          <option value="August">August</option>
+          <option value="September">September</option>
+          <option value="October">October</option>
+          <option value="November">November</option>
+          <option value="December">December</option>
+        </select>
+      </div>
+      <div><label>Enter Year</label><input id="year" type="number" /></div>
+      <button id="btn">Show Age</button>
+      <p id="demo"></p>
+    </center>
+  </body>
+  <style>
+    h1 {
+      font-size: 41px;
+      font-family: serif;
+      font-weight: 600;
+      text-decoration: underline;
+    }
+    label {
+      font-size: larger;
+      margin: 15px;
+    }
+    div {
+      margin: 10px;
+      padding: 10px;
+    }
+  </style>
+  <script>
+    const date = document.getElementById("date");
+    const year = document.getElementById("year");
+    const month = document.getElementById("month");
+    const btn = document.getElementById("btn");
+    const months = [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December",
+    ];
+    let v = 0;
+    btn.addEventListener("click", () => {
+      months.forEach((element, index) => {
+        if (element === month.value) {
+          v = index;
+        }
+      });
+      const currentYear = new Date().getFullYear();
+      if (!(date.value > 0 && date.value < 32) || year.value > 2024) {
+        alert("Invalid Input!");
+      } else {
+        const d = new Date(year.value, v, date.value).getTime();
+        const now = new Date().getTime();
+        document.getElementById("demo").innerHTML = `Woww! you are ${((now - d) / (1000 * 60 * 60 * 24 * 365.3)).toFixed(3)} years old :)`;
+      }
+    });
+  </script>
+</html>
